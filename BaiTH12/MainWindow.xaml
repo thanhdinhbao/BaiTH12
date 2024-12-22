@@ -52,14 +52,14 @@
             </ComboBox>
 
             <!-- Data Area -->
-            <DataGrid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="dgSanPham" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgSanPham_SelectionChanged">
+            <DataGrid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="dgSanPham" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgSanPham_SelectionChanged" ColumnHeaderStyle="{StaticResource styleColumnHeader}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding MaSp}"/>
                     <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding TenSp}"/>
+                    <DataGridTextColumn Header="Tên loại" Binding="{Binding LoaiSP}"/>
                     <DataGridTextColumn Header="Số lượng" Binding="{Binding SoLuong}"/>
                     <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGia}"/>
-                    <DataGridTextColumn Header="Mã loại" Binding="{Binding MaLoai}"/>
-                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding ThanhTien, StringFormat=N0}" Width="*"/>
+                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding ThanhTien, StringFormat=N0}" CellStyle="{StaticResource stylCell}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
 

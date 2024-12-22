@@ -72,7 +72,16 @@ namespace BaiTH12
         {
             if (!ValidateInput()) return;
 
+            string maSP = txtMaSanPham.Text;
 
+            if (_context.SanPhams.Any(sp => sp.MaSp == maSP))
+            {
+                MessageBox.Show("Mã sản phẩm đã tồn tại! Vui lòng nhập mã khác.",
+                                "Lỗi",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                return;
+            }
             var maLoai = cmbLoaiSP.SelectedValue?.ToString();
             var sanPham = new SanPham
             {
@@ -181,13 +190,10 @@ namespace BaiTH12
                 })
                 .FirstOrDefault();
 
-            // Nếu tìm thấy sản phẩm, mở cửa sổ mới và hiển thị thông tin sản phẩm
             if (product != null)
             {
-                // Tạo một danh sách chứa sản phẩm (ItemsSource yêu cầu danh sách)
                 var productList = new List<object> { product };
 
-                // Mở cửa sổ mới
                 Window2 productWindow = new Window2();
                 productWindow.LoadData(productList);
                 productWindow.Show();
@@ -210,15 +216,13 @@ namespace BaiTH12
                 return;
             }
 
-            // Lấy sản phẩm được chọn
             var selectedProduct = dgSanPham.SelectedItem as dynamic;
 
-            // Hiển thị thông tin lên các điều khiển nhập liệu
             txtMaSanPham.Text = selectedProduct.MaSp;
             txtTenSanPham.Text = selectedProduct.TenSp;
             txtDonGia.Text = selectedProduct.DonGia.ToString();
             txtSoLuong.Text = selectedProduct.SoLuong.ToString();
-            cmbLoaiSP.Text = selectedProduct.MaLoai;
+            cmbLoaiSP.SelectedValue = selectedProduct.MaLoai;
         }
     }
 }
